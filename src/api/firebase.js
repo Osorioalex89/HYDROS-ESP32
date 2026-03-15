@@ -7,19 +7,19 @@ import { detectarAnomalia } from '../utils/anomalyDetection';
 // Copia estos valores desde Firebase Console:
 // Configuracion del proyecto -> Tus apps -> SDK setup
 const firebaseConfig = {
-  apiKey:            "TU_API_KEY",
-  authDomain:        "TU_PROYECTO.firebaseapp.com",
-  projectId:         "TU_PROYECTO_ID",
-  storageBucket:     "TU_PROYECTO.appspot.com",
-  messagingSenderId: "TU_SENDER_ID",
-  appId:             "TU_APP_ID",
+  apiKey:            "AIzaSyDnYbL-MLez9rtij85bBghfJ_lA3XAxy2g",
+  authDomain:        "sigara-app-91612.firebaseapp.com",
+  projectId:         "sigara-app-91612",
+  storageBucket:     "sigara-app-91612.firebasestorage.app",
+  messagingSenderId: "438766700115",
+  appId:             "1:438766700115:web:458c434812b2d8dcfda8a6",
 };
 
 // ─── Inicializar Firebase (solo una vez) ──────────────────────
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
-const DEVICE_ID = 'HYDROS-001';
+const DEVICE_ID = 'sigara-001';
 
 // ─── Escucha en tiempo real la ultima lectura del ESP32 ───────
 // Llama esto UNA vez al iniciar la app

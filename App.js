@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import AppNavigator from './src/navigation/AppNavigator';
-import { useRealTimeData } from './src/hooks/useRealTimeData';
-
-// Componente interno que activa la escucha de Firebase
-function AppContent() {
-  // Inicia la conexión con Firebase en tiempo real
-  useRealTimeData();
-  return <AppNavigator />;
-}
+import { iniciarEscuchaEnTiempoReal } from './src/api/firebase';
 
 export default function App() {
+  useEffect(() => {
+    const unsubscribe = iniciarEscuchaEnTiempoReal();
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, []);
+
   return (
     <NavigationContainer>
       <StatusBar style="light" />
-      <AppContent />
+      <AppNavigator />
     </NavigationContainer>
   );
 }
