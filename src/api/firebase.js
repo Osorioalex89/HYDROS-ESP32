@@ -3,9 +3,6 @@ import { getFirestore, doc, onSnapshot, collection, addDoc, query, where, orderB
 import useWaterStore from '../store/useWaterStore';
 import { detectarAnomalia } from '../utils/anomalyDetection';
 
-// ─── Configuracion de tu proyecto Firebase ───────────────────
-// Copia estos valores desde Firebase Console:
-// Configuracion del proyecto -> Tus apps -> SDK setup
 const firebaseConfig = {
   apiKey:            "AIzaSyDnYbL-MLez9rtij85bBghfJ_lA3XAxy2g",
   authDomain:        "sigara-app-91612.firebaseapp.com",
@@ -22,7 +19,6 @@ export const db = getFirestore(app);
 const DEVICE_ID = 'sigara-001';
 
 // ─── Escucha en tiempo real la ultima lectura del ESP32 ───────
-// Llama esto UNA vez al iniciar la app
 export function iniciarEscuchaEnTiempoReal() {
   const { setSensorData, addAlerta, setDisconnected } = useWaterStore.getState();
   const bufferLocal = [];
