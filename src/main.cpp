@@ -15,7 +15,7 @@
 
 // ─── Pines de sensores ────────────────────────────────────────
 #define PIN_FLUJO  27
-#define PIN_FUGA   26
+#define PIN_FUGA   32
 #define PIN_TRIG   25
 #define PIN_ECHO   33
 #define PIN_TDS    34
@@ -71,9 +71,14 @@ float leerTDS() {
 
 // ─── Leer fuga YL-83 ─────────────────────────────────────────
 bool leerFuga() {
-  return digitalRead(PIN_FUGA) == LOW;
+  if (digitalRead(PIN_FUGA) == LOW) {
+    delay(500);
+    if (digitalRead(PIN_FUGA) == LOW) {
+      return true;
+    }
+  }
+  return false;
 }
-
 // ─── Calcular calidad del agua ────────────────────────────────
 String calcularCalidad(float tds) {
   if (tds < 50)  return "Excelente";
@@ -154,7 +159,7 @@ void setup() {
 
   pinMode(PIN_TRIG, OUTPUT);
   pinMode(PIN_ECHO, INPUT);
-  pinMode(PIN_FUGA, INPUT_PULLUP);
+  pinMode(PIN_FUGA, INPUT_PULLDOWN);
   pinMode(PIN_RELE, OUTPUT);
   digitalWrite(PIN_RELE, HIGH);
 
